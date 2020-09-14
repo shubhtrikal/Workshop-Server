@@ -97,5 +97,7 @@ mongoose
   })
   .then(() => {
     console.log("connected to db");
-    app.listen(4000, () => console.log("listening on Port 4000...."));
+    app.listen(process.env.PORT || 400, () =>
+      console.log("listening on Port 4000....")
+    );
   });
