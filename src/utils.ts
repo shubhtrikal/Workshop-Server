@@ -20,13 +20,9 @@ export const sendMail = (
   var mailOptions = {
     from: process.env.SENDER_EMAIL_ID,
     to: email,
-    subject: `ISTE SC MANIT Workshop`,
-    text: ` Hey ${name}, You have been successfully registered for ${
-      dataScience ? "Data Science" : ""
-    } ${dataScience && dataStructure ? "and" : ""}
-    ${
-      dataStructure ? "Data Structure" : ""
-    } workshops conducted by ISTE-SC MANIT, We will inform you soon about the things`,
+    subject: `Confirmation Email for registering to Version Beta 3.0 Workshop`,
+    text: ` Hi ${name},\n Greetings! \n Thank you for enrolling for Version Beta 3.0 Workshop. Your registration and payment are received successfully. We will be soon back to you with the details about how to attend the workshop.\n\n
+      Have questions about Version Beta 3.0 workshop or Version Beta 3.0?\nWe would love to help! Just hit reply.\n\nRegards,\nISTE SC MANIT Team`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

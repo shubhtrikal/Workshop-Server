@@ -18,13 +18,13 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY,
-  key_secret: process.env.RAZORPAY_SECRET,
+  key_id: process.env.RAZORPAY_TEST_KEY,
+  key_secret: process.env.RAZORPAY_TEST_SECRET,
 });
 
 app.post("/razorpay", async (req, res) => {
   const payment_capture = 1;
-  const amount = req.body.amount;
+  const amount = Math.ceil(req.body.amount);
   const currency = "INR";
 
   const options = {
@@ -33,6 +33,7 @@ app.post("/razorpay", async (req, res) => {
     receipt: shortid.generate(),
     payment_capture,
   };
+  console.log(amount);
 
   try {
     const response = await razorpay.orders.create(options);
@@ -43,6 +44,7 @@ app.post("/razorpay", async (req, res) => {
       amount: response.amount,
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       error: "COULD NOT CREATE ORDER",
     });
@@ -64,7 +66,7 @@ app.post("/save", async (req, res) => {
 
   try {
     const payment = await axios.get(
-      `https://${process.env.RAZORPAY_KEY}:${process.env.RAZORPAY_SECRET}@api.razorpay.com/v1/payments/${user.paymentId}`
+      `https://${process.env.RAZORPAY_TEST_KEY}:${process.env.RAZORPAY_TEST_SECRET}@api.razorpay.com/v1/payments/${user.paymentId}`
     );
     if (!payment.data.captured) {
       return res.status(400).json({
