@@ -1,5 +1,11 @@
 import nodemailer from "nodemailer";
 import env from "dotenv";
+import mailgun from "mailgun-js";
+const DOMAIN = "istescmanit.in";
+const mg = mailgun({
+  apiKey: "dummyKey",
+  domain: DOMAIN,
+});
 
 env.config();
 
@@ -32,5 +38,23 @@ export const sendMail = (
       console.log("Email sent: " + info.response);
       return null;
     }
+  });
+};
+
+export const sendMail2 = (
+  name: string,
+  email: string,
+  dataScience: boolean,
+  dataStructure: boolean
+) => {
+  const data = {
+    from: "Excited User <kdevanshsharma23@gmail.com>",
+    to: `dksofficial23@gmail.com `,
+    subject: "Hello",
+    text: "Testing some Mailgun awesomness!",
+  };
+  mg.messages().send(data, function (error, body) {
+    console.log(body);
+    console.log(error);
   });
 };

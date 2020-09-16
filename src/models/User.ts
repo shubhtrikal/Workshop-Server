@@ -33,9 +33,25 @@ const userSchema = new mongoose.Schema(
 
       required: true,
     },
-    earlyBird: {
+    workshopA: {
       type: Boolean,
-      trim: true,
+      required: true,
+    },
+    workshopB: {
+      type: Boolean,
+      required: true,
+    },
+    earlyBirdDataStructure: {
+      type: Boolean,
+    },
+    earlyBirdDataScience: {
+      type: Boolean,
+    },
+    earlyBirdWorkshopA: {
+      type: Boolean,
+    },
+    earlyBirdWorkshopB: {
+      type: Boolean,
     },
     amount: {
       type: String,

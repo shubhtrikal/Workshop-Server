@@ -78,9 +78,10 @@ app.post("/save", async (req, res) => {
       error: "PAYMENT WAS NOT SUCCESSFUL",
     });
   }
-
+  console.log(u);
   u.save((err, user) => {
     if (err) {
+      console.log(err);
       return res.status(400).json({
         error: "NOT ABLE TO SAVE USER IN DB",
       });
