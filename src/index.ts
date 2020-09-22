@@ -54,14 +54,14 @@ app.post("/razorpay", async (req, res) => {
 app.post("/count", async (req, res) => {
   const dataStructureCount = await User.count({ dataStructures: true });
   const dataScienceCount = await User.count({ dataScience: true });
-  const workshopACount = await User.count({ workshopA: true });
-  const workshopBCount = await User.count({ workshopB: true });
+  const workshopA = await User.count({ workshopA: true });
+  const workshopB = await User.count({ workshopB: true });
 
   return res.json({
     dataStructureCount: dataStructureCount + 20,
     dataScienceCount: dataScienceCount + 26,
-    workshopACount,
-    workshopBCount,
+    workshopA,
+    workshopB,
   });
 });
 
