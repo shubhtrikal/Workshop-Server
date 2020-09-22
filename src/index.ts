@@ -55,7 +55,10 @@ app.post("/count", async (req, res) => {
   const dataStructureCount = await User.count({ dataStructures: true });
   const dataScienceCount = await User.count({ dataScience: true });
 
-  return res.json({ dataStructureCount, dataScienceCount });
+  return res.json({
+    dataStructureCount: dataStructureCount + 20,
+    dataScienceCount: dataScienceCount + 26,
+  });
 });
 
 //EndPoint for front-end
@@ -92,6 +95,15 @@ app.post("/save", async (req, res) => {
     return res.json(user);
   });
 });
+
+// app.get("/getDsa", async (req, res) => {
+//   try {
+//     const participants = await User.find({ dataStructures: true });
+
+//     return res.json(participants);
+//   } catch (e) {}
+//   return null;
+// });
 
 mongoose
   .connect(process.env.MONGO_URI, {
