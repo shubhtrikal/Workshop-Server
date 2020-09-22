@@ -60,8 +60,8 @@ app.post("/count", async (req, res) => {
   return res.json({
     dataStructureCount: dataStructureCount + 20,
     dataScienceCount: dataScienceCount + 26,
-    workshopA,
-    workshopB,
+    workshopA: workshopA + 20,
+    workshopB: workshopB + 13,
   });
 });
 
