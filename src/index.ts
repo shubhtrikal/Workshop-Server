@@ -58,8 +58,8 @@ app.post("/count", async (req, res) => {
   const workshopB = await User.count({ workshopB: true });
 
   return res.json({
-    dataStructureCount: dataStructureCount + 20,
-    dataScienceCount: dataScienceCount + 26,
+    dataStructureCount: dataStructureCount + 10,
+    dataScienceCount: dataScienceCount + 16,
     workshopA: workshopA + 20,
     workshopB: workshopB + 13,
   });
@@ -102,7 +102,7 @@ app.post("/save", async (req, res) => {
 
 // app.get("/getDsa", async (req, res) => {
 //   try {
-//     const participants = await User.find({ dataStructures: true });
+//     const participants = await User.find({ dataScience: true });
 
 //     return res.json(participants);
 //   } catch (e) {}
