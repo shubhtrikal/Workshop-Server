@@ -1,4 +1,5 @@
 export type UserType = {
+  _id: string;
   name: string;
   email: string;
   phone: string;
@@ -27,4 +28,9 @@ export type PaymentVerificationType = {
   card_id: string;
   bank: string;
   createdAt: string;
+};
+
+export type PromoType = {
+  promoCode: string;
+  participants: [string] | [];
 };

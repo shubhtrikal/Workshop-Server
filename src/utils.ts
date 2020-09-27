@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import env from "dotenv";
 import mailgun from "mailgun-js";
+import Promo from "./models/Promo";
 const DOMAIN = "istescmanit.in";
 const mg = mailgun({
   apiKey: "dummyKey",
@@ -57,4 +58,16 @@ export const sendMail2 = (
     console.log(body);
     console.log(error);
   });
+};
+
+export const updatePromo = async (code: string, id: string) => {
+  console.log("testing update", id, code);
+  try {
+    await Promo.updateOne(
+      { promoCode: code },
+      { $addToSet: { participants: [id] } }
+    );
+  } catch (e) {
+    console.log(e);
+  }
 };

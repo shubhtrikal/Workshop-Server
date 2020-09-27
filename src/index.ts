@@ -4,11 +4,12 @@ import Razorpay from "razorpay";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import { UserType } from "./types";
+import { UserType, PromoType } from "./types";
 import User from "./models/User";
 import axios from "axios";
-import { sendMail } from "./utils";
+import { sendMail, updatePromo } from "./utils";
 import env from "dotenv";
+import Promo from "./models/Promo";
 
 env.config();
 
@@ -68,7 +69,7 @@ app.post("/count", async (req, res) => {
 //EndPoint for front-end
 //@ts-ignore
 app.post("/save", async (req, res) => {
-  const user: UserType = req.body;
+  const user: UserType = req.body.user;
   const u = new User(user);
 
   try {
@@ -94,11 +95,49 @@ app.post("/save", async (req, res) => {
       });
     }
     const u: UserType = user.toObject({ getters: true });
+    console.log(u);
+    console.log(req.body);
+
+    updatePromo(req.body.code.promo, u._id);
 
     sendMail(u.name, u.email, u.dataScience, u.dataStructures);
     return res.json(user);
   });
 });
+
+app.post("/checkPromo", async (req, res) => {
+  const code = req.body.promo;
+
+  const promo = await Promo.find({ promoCode: code });
+  if (promo.length > 0) {
+    return res.json(true);
+  }
+  return res.json(false);
+});
+
+// app.get("/makePromo", async (req, res) => {
+//   const promo: PromoType = {
+//     promoCode: `PROMO-ISTESCMANIT-${shortid.generate().toUpperCase()}`,
+//     participants: [],
+//   };
+//   const u = new Promo(promo);
+//   u.save((err, promo) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("promo code save successfully");
+//     }
+//   });
+// });
+
+// app.get("/promos", async (req, res) => {
+//   try {
+//     const participants = await Promo.find();
+
+//     return res.json(participants);
+//   } catch (e) {}
+//   return null;
+// });
 
 // app.get("/getDsa", async (req, res) => {
 //   try {
