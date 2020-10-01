@@ -59,8 +59,8 @@ app.post("/count", async (req, res) => {
   const workshopB = await User.count({ workshopB: true });
 
   return res.json({
-    dataStructureCount: dataStructureCount + 10,
-    dataScienceCount: dataScienceCount + 16,
+    dataStructureCount: dataStructureCount ,
+    dataScienceCount: dataScienceCount ,
     workshopA: workshopA + 20,
     workshopB: workshopB + 13,
   });
@@ -133,7 +133,7 @@ app.post("/checkPromo", async (req, res) => {
 // app.get("/promos", async (req, res) => {
 //   try {
 //     const participants = await Promo.find();
-
+//
 //     return res.json(participants);
 //   } catch (e) {}
 //   return null;
@@ -141,11 +141,22 @@ app.post("/checkPromo", async (req, res) => {
 
 // app.get("/getDsa", async (req, res) => {
 //   try {
-//     const participants = await User.find({ dataScience: true });
+//     const participants = await User.find({ dataStructures: true });
 
 //     return res.json(participants);
 //   } catch (e) {}
 //   return null;
+// });
+
+// app.get("/getPayment", async (req, res) => {
+//   const payment = await axios.get(
+//     `https://${process.env.RAZORPAY_TEST_KEY}:${process.env.RAZORPAY_TEST_SECRET}@api.razorpay.com/v1/payments/?from=1400826740&count=68`
+//   );
+//   const newP = payment.data.items.filter((a: any) => {
+//     a.status == "captured";
+//   });
+//   console.log(newP);
+//   return res.json(payment.data);
 // });
 
 mongoose
