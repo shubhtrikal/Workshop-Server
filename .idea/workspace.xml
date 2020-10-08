@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efbcf521-f785-415a-8a10-c87de3fa4e0a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +20,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/appointy/memberships" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -33,11 +39,23 @@
       <option name="presentableId" value="Default" />
       <updated>1601489817332</updated>
       <workItem from="1601489818428" duration="635000" />
-      <workItem from="1601523574908" duration="42000" />
+      <workItem from="1601523574908" duration="642000" />
+      <workItem from="1601560677580" duration="5000" />
+      <workItem from="1601611330411" duration="32000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="726" y="254" width="530" height="605" key="FileChooserDialogImpl" timestamp="1601611359723">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="726" y="254" width="530" height="605" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1601611359723" />
+    <state x="575" y="45" key="search.everywhere.popup" timestamp="1601611338878">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="575" y="45" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1601611338878" />
   </component>
 </project>
