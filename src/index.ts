@@ -59,10 +59,10 @@ app.post("/count", async (req, res) => {
   const workshopB = await User.count({ workshopB: true });
 
   return res.json({
-    dataStructureCount: dataStructureCount + 80,
-    dataScienceCount: dataScienceCount + 115,
-    workshopA: workshopA + 20,
-    workshopB: workshopB + 13,
+    dataStructureCount: dataStructureCount,
+    dataScienceCount: dataScienceCount,
+    workshopA: workshopA,
+    workshopB: workshopB,
   });
 });
 
@@ -166,7 +166,7 @@ mongoose
   })
   .then(() => {
     console.log("connected to db");
-    app.listen(process.env.PORT || 400, () =>
-      console.log("listening on Port 4000....")
+    app.listen(process.env.PORT || 8000, () =>
+      console.log("listening on Port 8000....")
     );
   });

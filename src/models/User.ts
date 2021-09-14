@@ -23,16 +23,6 @@ const userSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    dataScience: {
-      type: Boolean,
-
-      required: true,
-    },
-    dataStructures: {
-      type: Boolean,
-
-      required: true,
-    },
     workshopA: {
       type: Boolean,
       required: true,
@@ -40,12 +30,6 @@ const userSchema = new mongoose.Schema(
     workshopB: {
       type: Boolean,
       required: true,
-    },
-    earlyBirdDataStructure: {
-      type: Boolean,
-    },
-    earlyBirdDataScience: {
-      type: Boolean,
     },
     earlyBirdWorkshopA: {
       type: Boolean,

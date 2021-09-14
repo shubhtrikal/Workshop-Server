@@ -4,9 +4,10 @@ export type UserType = {
   email: string;
   phone: string;
   college: string;
-  dataScience: boolean;
-  dataStructures: boolean;
-  earlyBird: boolean;
+  workshopA: boolean;
+  workshopB: boolean;
+  earlyBirdA: boolean;
+  earlyBirdB: boolean;
   amount: string;
   paymentId: string;
 };
