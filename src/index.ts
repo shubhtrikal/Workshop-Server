@@ -52,15 +52,11 @@ app.post("/razorpay", async (req, res) => {
   }
 });
 
-app.post("/count", async (req, res) => {
-  const dataStructureCount = await User.count({ dataStructures: true });
-  const dataScienceCount = await User.count({ dataScience: true });
+app.get("/count", async (req, res) => {
   const workshopA = await User.count({ workshopA: true });
   const workshopB = await User.count({ workshopB: true });
 
   return res.json({
-    dataStructureCount: dataStructureCount,
-    dataScienceCount: dataScienceCount,
     workshopA: workshopA,
     workshopB: workshopB,
   });
@@ -100,12 +96,12 @@ app.post("/save", async (req, res) => {
 
     updatePromo(req.body.code.promo, u._id);
 
-    sendMail(u.name, u.email, u.dataScience, u.dataStructures);
+    //sendMail(u.name, u.email, u.dataScience, u.dataStructures);
     return res.json(user);
   });
 });
 
-app.post("/checkPromo", async (req, res) => {
+app.get("/checkPromo", async (req, res) => {
   const code = req.body.promo;
 
   const promo = await Promo.find({ promoCode: code });
