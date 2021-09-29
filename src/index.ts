@@ -1,15 +1,15 @@
-import express from "express";
-import shortid from "shortid";
-import Razorpay from "razorpay";
-import cors from "cors";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import { UserType, PromoType } from "./types";
-import User from "./models/User";
-import axios from "axios";
-import { sendMail, updatePromo } from "./utils";
-import env from "dotenv";
-import Promo from "./models/Promo";
+import express from 'express';
+import shortid from 'shortid';
+import Razorpay from 'razorpay';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import { UserType, PromoType } from './types';
+import User from './models/User';
+import axios from 'axios';
+import { sendMail, updatePromo } from './utils';
+import env from 'dotenv';
+import Promo from './models/Promo';
 
 env.config();
 
@@ -23,10 +23,10 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_TEST_SECRET,
 });
 
-app.post("/razorpay", async (req, res) => {
+app.post('/razorpay', async (req, res) => {
   const payment_capture = 1;
   const amount = Math.ceil(req.body.amount);
-  const currency = "INR";
+  const currency = 'INR';
 
   const options = {
     amount: amount,
@@ -47,12 +47,12 @@ app.post("/razorpay", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(400).json({
-      error: "COULD NOT CREATE ORDER",
+      error: 'COULD NOT CREATE ORDER',
     });
   }
 });
 
-app.get("/count", async (req, res) => {
+app.get('/count', async (req, res) => {
   const workshopA = await User.count({ workshopA: true });
   const workshopB = await User.count({ workshopB: true });
 
@@ -64,7 +64,7 @@ app.get("/count", async (req, res) => {
 
 //EndPoint for front-end
 //@ts-ignore
-app.post("/save", async (req, res) => {
+app.post('/save', async (req, res) => {
   const user: UserType = req.body.user;
   const u = new User(user);
 
@@ -74,12 +74,12 @@ app.post("/save", async (req, res) => {
     );
     if (!payment.data.captured) {
       return res.status(400).json({
-        error: "PAYMENT WAS NOT SUCCESSFUL",
+        error: 'PAYMENT WAS NOT SUCCESSFUL',
       });
     }
   } catch (e) {
     return res.status(400).json({
-      error: "PAYMENT WAS NOT SUCCESSFUL",
+      error: 'PAYMENT WAS NOT SUCCESSFUL',
     });
   }
   console.log(u);
@@ -87,7 +87,7 @@ app.post("/save", async (req, res) => {
     if (err) {
       console.log(err);
       return res.status(400).json({
-        error: "NOT ABLE TO SAVE USER IN DB",
+        error: 'NOT ABLE TO SAVE USER IN DB',
       });
     }
     const u: UserType = user.toObject({ getters: true });
@@ -96,12 +96,12 @@ app.post("/save", async (req, res) => {
 
     updatePromo(req.body.code.promo, u._id);
 
-    //sendMail(u.name, u.email, u.dataScience, u.dataStructures);
+    sendMail(u.name, u.email, u.workshopA, u.workshopB);
     return res.json(user);
   });
 });
 
-app.get("/checkPromo", async (req, res) => {
+app.post('/checkPromo', async (req, res) => {
   const code = req.body.promo;
 
   const promo = await Promo.find({ promoCode: code });
@@ -161,8 +161,8 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("connected to db");
+    console.log('connected to db');
     app.listen(process.env.PORT || 8000, () =>
-      console.log("listening on Port 8000....")
+      console.log('listening on Port 8000....')
     );
   });
