@@ -96,7 +96,7 @@ app.post('/save', async (req, res) => {
 
     updatePromo(req.body.code.promo, u._id);
 
-    sendMail(u.name, u.email, u.workshopA, u.workshopB);
+    sendMail(u.name, u.email, u.workshopA, u.workshopB, u.paymentId);
     return res.json(user);
   });
 });

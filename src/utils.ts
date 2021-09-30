@@ -48,7 +48,8 @@ export const sendMail = (
   name: string,
   email: string,
   workshopA: boolean,
-  workshopB: boolean
+  workshopB: boolean,
+  paymentId: string
 ) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -56,8 +57,9 @@ export const sendMail = (
     to: email, // Change to your recipient
     from: process.env.SENDER_EMAIL_ID, // Change to your verified sender
     subject: `Confirmation Email for registering to Version Beta 4.0 Workshop`,
-    text: ` Hi ${name},\n Greetings! \n Thank you for enrolling for Version Beta 4.0 Workshop. Your registration and payment are received successfully. We will be soon back to you with the details about how to attend the workshop.\n\n
-          Have questions about Version Beta 4.0 workshop or Version Beta 4.0?\nWe would love to help! Just hit reply.\n\nRegards,\nISTE SC MANIT Team`,
+    text: `Hi ${name},\nGreetings! \nThank you for enrolling for Version Beta 4.0 Workshop. Your registration and payment are received successfully. We will be soon back to you with the details about how to attend the workshop.\n
+    Your Payment Id: ${paymentId}\n\n
+    Have questions about Version Beta 4.0 workshop or Version Beta 4.0 Hackathon?\nWe would love to help! Just hit reply.\n\nRegards,\nISTE SC MANIT Team`,
   };
 
   sgMail
