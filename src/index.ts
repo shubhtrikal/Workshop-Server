@@ -57,8 +57,8 @@ app.get('/count', async (req, res) => {
   const workshopB = await User.count({ workshopB: true });
 
   return res.json({
-    workshopA: workshopA,
-    workshopB: workshopB,
+    workshopA: workshopA + 16,
+    workshopB: workshopB + 12,
   });
 });
 
