@@ -60,8 +60,8 @@ app.get('/count', async (req, res) => {
   const workshopB = await User.count({ workshopB: true });
 
   return res.json({
-    workshopA: workshopA,
-    workshopB: workshopB,
+    workshopA: workshopA + 16,
+    workshopB: workshopB + 12,
   });
 });
 
@@ -107,7 +107,7 @@ app.post('/save', async (req, res) => {
     );
     updatePromo(req.body.code.promo, u._id);
 
-    sendMail(u.name, u.email, u.workshopA, u.workshopB);
+    sendMail(u.name, u.email, u.workshopA, u.workshopB, u.paymentId);
     return res.json(user);
   });
 });
