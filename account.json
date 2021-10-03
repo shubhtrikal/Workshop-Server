@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "flair-haven",
+  "private_key_id": "21559d911bd6ace1082f75248cae2266064b20ed",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCfEWTaPrPRJlRK\nRJLt83c9Tsu3Mn0IRW84BunizNLHgoXFmnCvc1EFdjDGN7gg1GSVw5xdkr+2UeAS\n18exI60RP67PluB73hvwWawDN1N+WZvcb5/KoiOXsoTRRjoPtvbmrzHWB8XV6MJt\nFpdKy12em0AHfNKPuTfeC/6gvvGuwYqrBZbKg8xyKeLcJcqVWD+6TqGSBcWyUEbo\nvTAjjw0MlrjqKhsvntKivNoYms6suS/pYDm15zd7byaqSnzfK5fWtu/IPY0Q+Db/\n6KoaNl2w5HErVsLomKBivW4Vy0IJmu1CRrljXICZdDm+DHshFq3AJ9x7sUxIDgvU\nkox/okTTAgMBAAECggEAFOu5O3kOtl3XrTLqrjAcySvxYCVcS3eyYoiKP2GYAVR5\n2pzu4CyHBfRfAtr2NR8qIYZqLOZtn4GSOng10+bwzrl0+OmLmc8DFq/8jym6Kf6I\nIMxvlDuR+dQpYsrdPQ7f10RIhjFchD9KPwW/HT+1DvS1TabNnMiMAADM2wByEf0+\ncuookq/KvHQfc3zGCeSsUYTFVUYXG3SZhjGQt1IBT4yos6QUvQtSAbmFtg7aC0TZ\n0oA0pEaCJBNNXsPOlVpv4yaM2MU7w3MZ8c3ZKrXIs+JcEqI7GYqcRO9owHHdELYF\nc6nFq+AjGQIiv8O8u2KmdmIb/IkdZ2BhiEUfuC5s9QKBgQDOXjwyRmJKwlX/Eftw\n4FJSk1N6HYmWTlX0MLSCOzAlYV3qDm/rJwRGxCTtkhBUvhoySIF3hL0z+qVIhM0C\n6XWE+HzXyShW9MNO3d2x571+noKAO8AQ1c4FeazgwDrsmVnGL8vnxymNeJ1p9g1J\n+Dc6PWBE406d+ZEbP6wltP6hNwKBgQDFUvYMDxoGQsId+9jWdRos8UA9ryjwdGVV\nS0jKJ+hSy6P1YqGwSi4FTAmWjmUNF68/s19bEuj84KHoa7Inbu57XYIw2ItqsFM4\nB3AN/suiH0kRj8gvErIyf5RXOZkFTi+YU/oHe1OirmXPWoIBl2AlcXKQjVG1hiM3\n7oAk95I3RQKBgCETaYKFVWu2CiJ/t1U4HvmtM0v3P/4fQBeLVuMoqWbUXEEPX1DJ\nSB4vgdux9XwfnANDK70EQW77VVJyNomo8XUGfrv3Ocf2IveZB9dj1TNeJHx5Fyeb\nnRGzlsnPBaK2UXU6Y+waN8a89j3teePJLNDg1XU1GXyoa2F6qxTAFa+xAoGBALP0\nTOAChcFf8JhXrhEnCpAiFGws6jEgdamr1t5GNuILRaPsJ3kWrZG3HqdnhVDDYNe/\nRh9Qx5qXYhEM5pR/3o4zYSAa3EqYM8zNO6wHyr43ufOCJRaI/mp/X1GM/biQ7WcG\nbueT2Vprof3QlO/OlaiQJeMefn4Frui7YbJU9cvhAoGATPWf70376mVr/chkCAfR\nLnq0r+6cuKPLomIJawrWWW5pxU25GeJP3vPp0jAT1vfJEO4yfxDJPGcELJF1RPv3\nrREaKhhJj4UBmCcTp7u2qMX1gGhRL7A/EkQPRDRIzmqh3TVTjNkrvzXOFV+FwcwQ\nETmzXQbLP8U3igPO2F3MHkQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "flair-haven@flair-haven.iam.gserviceaccount.com",
+  "client_id": "102222206547538653232",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/flair-haven%40flair-haven.iam.gserviceaccount.com"
+}

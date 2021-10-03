@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 import { UserType, PromoType } from './types';
 import User from './models/User';
 import axios from 'axios';
-import { sendMail, updatePromo } from './utils';
+import { sendMail, updatePromo, updateSheet, updateBulkData } from './utils';
 import env from 'dotenv';
 import Promo from './models/Promo';
 
@@ -23,6 +23,9 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_TEST_SECRET,
 });
 
+app.get('/', async (req, res) => {
+  res.send('Welcome To Flair Haven Server');
+});
 app.post('/razorpay', async (req, res) => {
   const payment_capture = 1;
   const amount = Math.ceil(req.body.amount);
@@ -92,8 +95,16 @@ app.post('/save', async (req, res) => {
     }
     const u: UserType = user.toObject({ getters: true });
     console.log(u);
-    console.log(req.body);
-
+    updateSheet(
+      u.name,
+      u.email,
+      u.phone,
+      u.college,
+      u.workshopA,
+      u.workshopB,
+      u.amount,
+      u.paymentId
+    );
     updatePromo(req.body.code.promo, u._id);
 
     sendMail(u.name, u.email, u.workshopA, u.workshopB);
@@ -155,6 +166,7 @@ app.post('/checkPromo', async (req, res) => {
 //   return res.json(payment.data);
 // });
 
+//app.listen(8000, () => console.log('Listning to port 8000'));
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,

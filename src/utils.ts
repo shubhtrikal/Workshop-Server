@@ -1,8 +1,8 @@
-import nodemailer from 'nodemailer';
 import env from 'dotenv';
-import mailgun from 'mailgun-js';
+import { google } from 'googleapis';
 import Promo from './models/Promo';
 import sgMail from '@sendgrid/mail';
+import { UserType } from './types';
 
 // const DOMAIN = 'istescmanit.in';
 // const mg = mailgun({
@@ -95,6 +95,90 @@ export const updatePromo = async (code: string, id: string) => {
       { promoCode: code },
       { $addToSet: { participants: [id] } }
     );
+  } catch (e) {
+    console.log(e);
+  }
+};
+const auth = new google.auth.GoogleAuth({
+  keyFile: 'account.json',
+  scopes: 'https://www.googleapis.com/auth/spreadsheets',
+});
+export const updateSheet = async (
+  name: string,
+  email: string,
+  phone: string,
+  college: string,
+  workshopA: boolean,
+  workshopB: boolean,
+  amount: string,
+  paymentId: string
+) => {
+  try {
+    const client = await auth.getClient();
+    const sheets = await google.sheets({ version: 'v4', auth: client });
+    const sheetId = '1_iXtQHv3d2Wa6rn06sgUV9xb7u-_qYo48VCwXT7BjyI';
+
+    //writing in a Sheet
+    await sheets.spreadsheets.values.append({
+      auth: auth,
+      spreadsheetId: sheetId,
+      range: 'Sheet1!A:H',
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: [
+          [
+            name,
+            email,
+            phone,
+            college,
+            workshopA,
+            workshopB,
+            amount,
+            paymentId,
+          ],
+        ],
+      },
+    });
+    return;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const updateBulkData = async (Data: UserType[]) => {
+  try {
+    const client = await auth.getClient();
+    const sheets = await google.sheets({ version: 'v4', auth: client });
+    const sheetId = '1_iXtQHv3d2Wa6rn06sgUV9xb7u-_qYo48VCwXT7BjyI';
+
+    //writing in a Sheet
+    const Temp = new Array();
+    Data.map((data) => {
+      const temp = new Array();
+      temp.push(
+        data.name,
+        data.email,
+        data.phone,
+        data.college,
+        data.workshopA,
+        data.workshopB,
+        data.amount,
+        data.paymentId
+      );
+      Temp.push(temp);
+    });
+    console.log(Temp);
+
+    await sheets.spreadsheets.values.append({
+      auth: auth,
+      spreadsheetId: sheetId,
+      range: 'Sheet1!A:H',
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: Temp,
+      },
+    });
+    return;
   } catch (e) {
     console.log(e);
   }
