@@ -26,6 +26,15 @@ const razorpay = new Razorpay({
 app.get('/', async (req, res) => {
   res.send('Welcome To Flair Haven Server');
 });
+app.get('/updateSheet', async (req, res) => {
+  try {
+    const users: any = await User.find();
+    await updateBulkData(users);
+    res.json(`Sheet Updated by following data ${users}`);
+  } catch (e) {
+    res.send('Error, something went wrong');
+  }
+});
 app.post('/razorpay', async (req, res) => {
   const payment_capture = 1;
   const amount = Math.ceil(req.body.amount);

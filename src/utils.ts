@@ -141,6 +141,7 @@ export const updateSheet = async (
     const sheetId = '1_iXtQHv3d2Wa6rn06sgUV9xb7u-_qYo48VCwXT7BjyI';
 
     //writing in a Sheet
+
     await sheets.spreadsheets.values.append({
       auth: auth,
       spreadsheetId: sheetId,
@@ -194,7 +195,11 @@ export const updateBulkData = async (Data: UserType[]) => {
       Temp.push(temp);
     });
     console.log(Temp);
-
+    await sheets.spreadsheets.values.clear({
+      auth: auth,
+      spreadsheetId: sheetId,
+      range: 'Sheet1!A2:H250',
+    });
     await sheets.spreadsheets.values.append({
       auth: auth,
       spreadsheetId: sheetId,
