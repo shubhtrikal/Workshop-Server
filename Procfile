@@ -1,1 +1,1 @@
-web: nodemon src/index.ts
+web: NODE_OPTIONS="--max-old-space-size=5120" nodemon src/index.ts 
