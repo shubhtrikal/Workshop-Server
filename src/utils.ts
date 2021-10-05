@@ -120,10 +120,7 @@ export const updatePromo = async (code: string, id: string) => {
     console.log(e);
   }
 };
-const auth = new google.auth.GoogleAuth({
-  keyFile: 'account.json',
-  scopes: 'https://www.googleapis.com/auth/spreadsheets',
-});
+
 export const updateSheet = async (
   name: string,
   email: string,
@@ -135,6 +132,10 @@ export const updateSheet = async (
   paymentId: string
 ) => {
   try {
+    const auth = new google.auth.GoogleAuth({
+      keyFile: 'account.json',
+      scopes: 'https://www.googleapis.com/auth/spreadsheets',
+    });
     const client = await auth.getClient();
     const sheets = await google.sheets({ version: 'v4', auth: client });
     const sheetId = '1_iXtQHv3d2Wa6rn06sgUV9xb7u-_qYo48VCwXT7BjyI';
@@ -168,6 +169,10 @@ export const updateSheet = async (
 
 export const updateBulkData = async (Data: UserType[]) => {
   try {
+    const auth = new google.auth.GoogleAuth({
+      keyFile: 'account.json',
+      scopes: 'https://www.googleapis.com/auth/spreadsheets',
+    });
     const client = await auth.getClient();
     const sheets = await google.sheets({ version: 'v4', auth: client });
     const sheetId = '1_iXtQHv3d2Wa6rn06sgUV9xb7u-_qYo48VCwXT7BjyI';
