@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const promoSchema = new mongoose.Schema(
   {
@@ -9,10 +9,14 @@ const promoSchema = new mongoose.Schema(
       trim: true,
     },
     participants: [String],
+    discount: {
+      type: Number,
+    },
   },
+
   {
     timestamps: true,
   }
 );
 
-export default mongoose.model("Promo", promoSchema);
+export default mongoose.model('Promo', promoSchema);

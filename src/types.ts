@@ -34,4 +34,5 @@ export type PaymentVerificationType = {
 export type PromoType = {
   promoCode: string;
   participants: [string] | [];
+  discount: Number;
 };

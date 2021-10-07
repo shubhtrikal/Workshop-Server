@@ -103,25 +103,32 @@ app.post('/save', async (req, res) => {
 
 app.post('/checkPromo', async (req, res) => {
   const code = req.body.promo;
-
-  const promo = await Promo.find({ promoCode: code });
-  if (promo.length > 0) {
-    return res.json(true);
+  try {
+    const promo: any = await Promo.findOne({ promoCode: code });
+    if (promo) {
+      return res.json({ valid: true, discount: promo.discount });
+    }
+    return res.json({ valid: false, discount: 0 });
+  } catch (e) {
+    return res.json({ valid: false, discount: 0 });
   }
-  return res.json(false);
 });
 
-// app.get("/makePromo", async (req, res) => {
+// app.post('/makePromo', async (req, res) => {
+//   const { promoCode, discount } = req.body;
 //   const promo: PromoType = {
-//     promoCode: `PROMO-ISTESCMANIT-${shortid.generate().toUpperCase()}`,
+//     promoCode: promoCode,
 //     participants: [],
+//     discount: discount,
 //   };
 //   const u = new Promo(promo);
 //   u.save((err, promo) => {
 //     if (err) {
 //       console.log(err);
+//       res.status(400).send('Error');
 //     } else {
-//       console.log("promo code save successfully");
+//       console.log('promo code save successfully');
+//       res.send('promo code saved');
 //     }
 //   });
 // });
