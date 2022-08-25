@@ -123,28 +123,31 @@ app.post('/save', async (req, res) => {
 
 app.post('/checkPromo', async (req, res) => {
   const code = req.body.promo;
-
-  const promo = await Promo.find({ promoCode: code });
-  if (promo.length > 0) {
-    return res.json(true);
+  // const discount = req.body.discount;
+  const promo: any = await Promo.findOne({ promoCode: code });
+  if (promo) {
+    return res.json({valid : true, discount: promo.discount});
   }
-  return res.json(false);
+  return res.json({valid : false});
 });
 
-// app.get("/makePromo", async (req, res) => {
-//   const promo: PromoType = {
-//     promoCode: `PROMO-ISTESCMANIT-${shortid.generate().toUpperCase()}`,
-//     participants: [],
-//   };
-//   const u = new Promo(promo);
-//   u.save((err, promo) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log("promo code save successfully");
-//     }
-//   });
-// });
+app.post("/makePromo", async (req, res) => {
+  const promo: PromoType = {
+    promoCode: req.body.promo,
+    discount : req.body.discount,
+    participants: [],
+  };
+  const u = new Promo(promo);
+  u.save((err, promo) => {
+    if (err) {
+      res.send(err);
+      console.log(err);
+    } else {
+      res.json(promo);
+      console.log("promo code save successfully");
+    }
+  });
+});
 
 // app.get("/promos", async (req, res) => {
 //   try {

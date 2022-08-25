@@ -8,6 +8,10 @@ const promoSchema = new mongoose.Schema(
       maxlength: 32,
       trim: true,
     },
+    discount: {
+      type: Number,
+      required: true,
+    },
     participants: [String],
   },
   {
