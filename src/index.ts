@@ -64,10 +64,39 @@ app.get('/count', async (req, res) => {
 
 //EndPoint for front-end
 //@ts-ignore
-app.post('/save', async (req, res) => {
-  const user: UserType = req.body.user;
+
+app.post("/save",async (req,res)=>{
+  
+  const user: UserType = req.body;
+  console.log(user)
+
+  const user1 = await User.findOne({email: req.body.email});
+  if(user1){
+      return res.status(400).json("user already exist!");
+  }
   const u = new User(user);
 
+  u.save((err, user) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({
+        error: 'NOT ABLE TO SAVE USER IN DB',
+      });
+    }
+    const u: UserType = user.toObject({ getters: true });
+    console.log(u);
+    console.log(req.body);
+
+    // updatePromo(req.body.code.promo, u._id);
+    return res.json(user);
+  });
+ 
+
+});
+
+app.post('/update', async (req, res) => {
+  const user: UserType = req.body.user;
+ 
   try {
     const payment = await axios.get(
       `https://${process.env.RAZORPAY_TEST_KEY}:${process.env.RAZORPAY_TEST_SECRET}@api.razorpay.com/v1/payments/${user.paymentId}`
@@ -82,37 +111,76 @@ app.post('/save', async (req, res) => {
       error: 'PAYMENT WAS NOT SUCCESSFUL',
     });
   }
-  console.log(u);
-  u.save((err, user) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({
-        error: 'NOT ABLE TO SAVE USER IN DB',
-      });
-    }
-    const u: UserType = user.toObject({ getters: true });
-    console.log(u);
+    // console.log(u);
+  
+    // const u: UserType = user.toObject({ getters: true })
+    // console.log(req.body.user.email)
+    
+    User.findOneAndUpdate({email:req.body.user.email}, {$set:req.body.user}, {new: true}, (err, doc) => {
+      if (err) {
+          console.log("Something wrong when updating data!");
+      }
+      // console.log(doc);
+  });
+
+    // console.log(u);
     console.log(req.body);
 
-    updatePromo(req.body.code.promo, u._id);
+    updatePromo(req.body.code.promo, user._id);
 
-    sendMail(u.name, u.email, u.workshopA, u.workshopB, u.paymentId);
+    sendMail(user.name, user.email, user.workshopA, user.workshopB, user.paymentId);
     return res.json(user);
   });
-});
 
-app.post('/checkPromo', async (req, res) => {
-  const code = req.body.promo;
-  try {
-    const promo: any = await Promo.findOne({ promoCode: code });
-    if (promo) {
-      return res.json({ valid: true, discount: promo.discount });
-    }
-    return res.json({ valid: false, discount: 0 });
-  } catch (e) {
-    return res.json({ valid: false, discount: 0 });
-  }
-});
+// app.post('/save', async (req, res) => {
+//   const user: UserType = req.body.user;
+//   const u = new User(user);
+
+//   try {
+//     const payment = await axios.get(
+//       `https://${process.env.RAZORPAY_TEST_KEY}:${process.env.RAZORPAY_TEST_SECRET}@api.razorpay.com/v1/payments/${user.paymentId}`
+//     );
+//     if (!payment.data.captured) {
+//       return res.status(400).json({
+//         error: 'PAYMENT WAS NOT SUCCESSFUL',
+//       });
+//     }
+//   } catch (e) {
+//     return res.status(400).json({
+//       error: 'PAYMENT WAS NOT SUCCESSFUL',
+//     });
+//   }
+//   console.log(u);
+//   u.save((err, user) => {
+//     if (err) {
+//       console.log(err);
+//       return res.status(400).json({
+//         error: 'NOT ABLE TO SAVE USER IN DB',
+//       });
+//     }
+//     const u: UserType = user.toObject({ getters: true });
+//     console.log(u);
+//     console.log(req.body);
+
+//     updatePromo(req.body.code.promo, u._id);
+
+//     sendMail(u.name, u.email, u.workshopA, u.workshopB, u.paymentId);
+//     return res.json(user);
+//   });
+// });
+
+// app.post('/checkPromo', async (req, res) => {
+//   const code = req.body.promo;
+//   try {
+//     const promo: any = await Promo.findOne({ promoCode: code });
+//     if (promo) {
+//       return res.json({ valid: true, discount: promo.discount });
+//     }
+//     return res.json({ valid: false, discount: 0 });
+//   } catch (e) {
+//     return res.json({ valid: false, discount: 0 });
+//   }
+// });
 
 // app.post('/makePromo', async (req, res) => {
 //   const { promoCode, discount } = req.body;
