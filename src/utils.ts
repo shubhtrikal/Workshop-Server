@@ -138,7 +138,7 @@ export const updateSheet = async (
     });
     const client = await auth.getClient();
     const sheets = await google.sheets({ version: 'v4', auth: client });
-    const sheetId = '1kTqCqdCUM-omNwMTMnjyXBXFVoTJakM9gLZOB6UjYEM';
+    const sheetId = '15nADuJC0Wk5gAiRZ98EtpTDo6Cy7Mf2w6dhIthYbOr0';
 
     //writing in a Sheet
 
@@ -176,7 +176,7 @@ export const updateBulkData = async (Data: UserType[]) => {
     });
     const client = await auth.getClient();
     const sheets = await google.sheets({ version: 'v4', auth: client });
-    const sheetId = '1kTqCqdCUM-omNwMTMnjyXBXFVoTJakM9gLZOB6UjYEM';
+    const sheetId = '15nADuJC0Wk5gAiRZ98EtpTDo6Cy7Mf2w6dhIthYbOr0';
 
     //writing in a Sheet
     const Temp = new Array();
