@@ -6,7 +6,8 @@
   "scripts": {
     "watch": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "start": "node src/index.ts"
   },
   "author": "devansh <kdevanshsharma23@gmail.com>",
   "license": "ISC",
